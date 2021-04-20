@@ -76,7 +76,7 @@ bool aquireFrame()
 // node main loop
 int main(int argc, char **argv)
 {
-	ros::init(argc, argv, "jetbot_camera");
+	ros::init(argc, argv, "jetbot_camera", ros::init_options::AnonymousName);
  
 	ros::NodeHandle nh;
 	ros::NodeHandle private_nh("~");
@@ -118,7 +118,14 @@ int main(int argc, char **argv)
 	/*
 	 * advertise publisher topics
 	 */
-	ros::Publisher camera_publisher = private_nh.advertise<sensor_msgs::Image>("raw", 2);
+
+
+	// name topic based on device no.
+	const char dev_no = camera_device.back();
+	std::string topic_name = "/jetbot_camera/raw/";
+	topic_name.push_back(dev_no);
+	
+	ros::Publisher camera_publisher = private_nh.advertise<sensor_msgs::Image>(topic_name, 2);
 	camera_pub = &camera_publisher;
 
 

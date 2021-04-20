@@ -185,6 +185,7 @@ bool imageConverter::Convert( sensor_msgs::Image& msg, imageFormat format, Pixel
 
 	msg.encoding     = imageFormatToEncoding(format);
 	msg.is_bigendian = false;
+	msg.header.stamp = ros::Time::now();
 	
 	return true;
 }

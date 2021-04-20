@@ -1,0 +1,12 @@
+<launch>
+        <!-- Publish Camera 0-->
+        <node name="jetbot_camera_0" pkg="jetbot_ros" type="jetbot_camera" args="_device:=csi://0" />
+
+        <node name="compressed_transport_0" pkg="image_transport" type="republish" args="raw in:=/jetbot_camera/raw/0 compressed out:=/jetbot_camera/0" />
+
+        <!-- Publish Camera 1-->
+        <node name="jetbot_camera_1" pkg="jetbot_ros" type="jetbot_camera" args="_device:=csi://1" />
+
+        <node name="compressed_transport_1" pkg="image_transport" type="republish" args="raw in:=/jetbot_camera/raw/1 compressed out:=/jetbot_camera/1" />
+
+</launch>
